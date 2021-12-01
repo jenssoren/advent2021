@@ -1,7 +1,7 @@
 {
-  "name": "advent_of_code_2020",
+  "name": "advent_of_code_2021",
   "version": "1.0.0",
-  "description": "jenssoren soultion for advent of code 2020",
+  "description": "jenssoren soultion for advent of code 2021",
   "main": "main.js",
   "directories": {
     "lib": "lib"
@@ -11,19 +11,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jenssoren/advent2020.git"
+    "url": "git+https://github.com/jenssoren/advent2021.git"
   },
   "author": "jenssoren",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jenssoren/advent2020/issues"
+    "url": "https://github.com/jenssoren/advent2021/issues"
   },
-  "homepage": "https://github.com/jenssoren/advent2020#readme",
+  "homepage": "https://github.com/jenssoren/advent2021#readme",
   "devDependencies": {
-    "eslint": "^7.28.0",
-    "eslint-config-standard": "^16.0.2",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1"
+    "eslint-plugin-promise": "^5.2.0"
   }
 }
