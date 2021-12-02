@@ -25,7 +25,7 @@ class Task extends Base {
           depth += data[i].ammount
           break
         default:
-          console.log('Unkown instruction: ' + data[i].instruction)
+          console.log('Unknown instruction: ' + data[i].instruction)
           break
       }
     }
