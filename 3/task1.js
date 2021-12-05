@@ -14,7 +14,7 @@ class Task extends Base {
       let ones = 0
       let zeroes = 0
       for (let i = 0; i < data.length; i++) {
-        if (data[i][j] == "1") {
+        if (data[i][j] === '1') {
           ones++
         } else {
           zeroes++
@@ -22,18 +22,18 @@ class Task extends Base {
       }
 
       if (ones > zeroes) {
-        gamma = gamma + "1"
-        epsilon = epsilon + "0"
+        gamma = gamma + '1'
+        epsilon = epsilon + '0'
       } else {
-        gamma = gamma + "0"
-        epsilon = epsilon + "1"
+        gamma = gamma + '0'
+        epsilon = epsilon + '1'
       }
     }
 
     gamma = parseInt(gamma, 2)
     epsilon = parseInt(epsilon, 2)
 
-    console.log("Gamma is: " + gamma, " Epsilon: " + epsilon, "Answer: ", epsilon * gamma)
+    console.log('Gamma is: ' + gamma, ' Epsilon: ' + epsilon, 'Answer: ', epsilon * gamma)
   }
 }
 

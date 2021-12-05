@@ -5,32 +5,32 @@ class Task extends Task1.Task {
     let pos = 0
     let oxygenData = [...data]
     while (oxygenData.length > 1) {
-      let bit = this.findBitCriteria(oxygenData, pos, true)
-      oxygenData = oxygenData.filter(row => row[pos] == bit)
+      const bit = this.findBitCriteria(oxygenData, pos, true)
+      oxygenData = oxygenData.filter(row => row[pos] === bit)
       pos++
     }
 
-    let oxygenGeneratorRating = parseInt(oxygenData[0].join(""), 2)
+    const oxygenGeneratorRating = parseInt(oxygenData[0].join(''), 2)
 
     pos = 0
     while (data.length > 1) {
-      let bit = this.findBitCriteria(data, pos, false)
-      data = data.filter(row => row[pos] == bit)
+      const bit = this.findBitCriteria(data, pos, false)
+      data = data.filter(row => row[pos] === bit)
       pos++
     }
 
-    let scrubberRating = parseInt(data[0].join(""), 2)
+    const scrubberRating = parseInt(data[0].join(''), 2)
 
     console.log(
-      "Oxygen:", oxygenGeneratorRating, "CO2 Scrubber:", scrubberRating, "Answer:", oxygenGeneratorRating * scrubberRating
+      'Oxygen:', oxygenGeneratorRating, 'CO2 Scrubber:', scrubberRating, 'Answer:', oxygenGeneratorRating * scrubberRating
     )
   }
 
-  findBitCriteria(list, pos, most) {
+  findBitCriteria (list, pos, most) {
     let zeroes = 0
     let ones = 0
-    for(let i = 0; i < list.length; i++) {
-      if (list[i][pos] == "1") {
+    for (let i = 0; i < list.length; i++) {
+      if (list[i][pos] === '1') {
         ones++
       } else {
         zeroes++
