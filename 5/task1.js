@@ -63,7 +63,6 @@ class Task extends Base {
   }
 
   findMatches (x, y, data) {
-    console.log('Find matches for x:', x, 'y', y)
     return data.filter(row => {
       return row.points.filter(point => point.x === x && point.y === y).length >= 1
     }).length
