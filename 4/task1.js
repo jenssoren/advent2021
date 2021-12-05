@@ -13,7 +13,8 @@ class Task extends Base {
     for (let i = 1; i < data.length; i++) {
       const board = {
         id: i,
-        numbers: []
+        numbers: [],
+        won: false
       }
       const rows = data[i].split('\n')
       for (let j = 0; j < rows.length; j++) {
