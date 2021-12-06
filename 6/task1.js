@@ -18,15 +18,14 @@ class Task extends Base {
 
     for (let i = 0; i < this.days(); i++) {
       const daysFish = new Array(9).fill(0)
-      let add = 0
       for (let j = 0; j < fish.length; j++) {
         if (j === 0) {
           daysFish[8] = fish[j]
-          add = fish[j]
+        } else {
+          daysFish[j - 1] = fish[j]
         }
-        daysFish[j - 1] = fish[j]
       }
-      daysFish[6] += add
+      daysFish[6] += daysFish[8]
       fish = daysFish
 
       console.log('After', i + 1, 'theres is', fish.reduce((count, fish) => count + fish, 0), 'Lanternfish')
