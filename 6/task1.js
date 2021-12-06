@@ -10,7 +10,7 @@ class Task extends Base {
   }
 
   handle (data) {
-    let fish = new Array(9).fill(0)
+    const fish = new Array(9).fill(0)
 
     for (let i = 0; i < data.length; i++) {
       fish[data[i]] += 1
