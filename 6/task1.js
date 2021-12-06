@@ -10,21 +10,28 @@ class Task extends Base {
   }
 
   handle (data) {
+    let fish = new Array(9).fill(0)
+
+    for (let i = 0; i < data.length; i++) {
+      fish[data[i]] += 1
+    }
+
+    console.log(fish)
+
     for (let i = 0; i < this.days(); i++) {
+      const daysFish = new Array(9).fill(0)
       let add = 0
-      for (let j = 0; j < data.length; j++) {
-        data[j]--
-        if (data[j] < 0) {
-          data[j] = 6
-          add++
+      for (let j = 0; j < fish.length; j++) {
+        if (j === 0) {
+          daysFish[8] = fish[j]
+          add = fish[j]
         }
+        daysFish[j - 1] = fish[j]
       }
+      daysFish[6] += add
+      fish = daysFish
 
-      for (let k = 0; k < add; k++) {
-        data.push(8)
-      }
-
-      console.log('After', i + 1, 'theres is', data.length, 'Lanternfish')
+      console.log('After', i + 1, 'theres is', fish.reduce((count, fish) => count + fish, 0), 'Lanternfish')
     }
   }
 }
