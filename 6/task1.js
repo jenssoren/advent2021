@@ -16,8 +16,6 @@ class Task extends Base {
       fish[data[i]] += 1
     }
 
-    console.log(fish)
-
     for (let i = 0; i < this.days(); i++) {
       const daysFish = new Array(9).fill(0)
       let add = 0
