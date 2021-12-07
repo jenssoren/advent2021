@@ -20,16 +20,14 @@ class Task extends Base {
   }
 
   fuelCost (position, data) {
-    let fuelCost = 0
-    for (let i = 0; i < data.length; i++) {
-      if (data[i] < position) {
-        fuelCost += position - data[i]
-      } else if (data[i] > position) {
-        fuelCost += data[i] - position
+    return data.reduce((totalFuel, crab) => {
+      let fuel = position - crab
+      if (crab > position) {
+        fuel = fuel * -1
       }
-    }
 
-    return fuelCost
+      return totalFuel + fuel
+    }, 0)
   }
 }
 
