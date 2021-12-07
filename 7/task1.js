@@ -9,14 +9,7 @@ class Task extends Base {
     const largest = Math.max(...data)
     let cheapest = null
     for (let i = 0; i <= largest; i++) {
-      let fuelCost = 0
-      for (let j = 0; j < data.length; j++) {
-        if (data[j] < i) {
-          fuelCost += i - data[j]
-        } else if (data[j] > i) {
-          fuelCost += data[j] - i
-        }
-      }
+      const fuelCost = this.fuelCost(i, data)
 
       if (cheapest == null || fuelCost < cheapest) {
         cheapest = fuelCost
@@ -24,6 +17,19 @@ class Task extends Base {
     }
 
     console.log('Cheapest fuel cost is: ', cheapest)
+  }
+
+  fuelCost (position, data) {
+    let fuelCost = 0
+    for (let i = 0; i < data.length; i++) {
+      if (data[i] < position) {
+        fuelCost += position - data[i]
+      } else if (data[i] > position) {
+        fuelCost += data[i] - position
+      }
+    }
+
+    return fuelCost
   }
 }
 
