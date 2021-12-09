@@ -6,53 +6,48 @@ class Task extends Base {
   }
 
   handle (data) {
-    const lowPoints = []
-    for (let i = 0; i < data.length; i++) {
-      for (let j = 0; j < data[i].length; j++) {
-        if (this.isLow(i, j, data)) {
-          lowPoints.push(data[i][j])
-        }
-      }
-    }
+    const lowPoints = this.findLowPoints(data).map(([x, y]) => data[x][y])
 
     console.log('Low points sum of risk', lowPoints.reduce((sum, point) => { return sum + point + 1 }, 0))
   }
 
-  isLow (x, y, data) {
-    let lowerThenUp = false
-    let lowerThenDown = false
-    let lowerThenLeft = false
-    let lowerThenRight = false
-    // Check up
-
-    if (x === 0) {
-      lowerThenUp = true
-    } else {
-      lowerThenUp = data[x][y] < data[x - 1][y]
+  findLowPoints (data) {
+    const points = []
+    for (let x = 0; x < data.length; x++) {
+      for (let y = 0; y < data[x].length; y++) {
+        if (this.isLowerThanAdj(x, y, data)) {
+          points.push([x, y])
+        }
+      }
     }
+    return points
+  }
 
-    // Check down
-    if (x === data.length - 1) {
-      lowerThenDown = true
-    } else {
-      lowerThenDown = data[x][y] < data[x + 1][y]
+  isLowerThanAdj (x, y, data) {
+    const height = data[x][y]
+    const adj = this.findAdj(x, y)
+    for (let i = 0; i < adj.length; i++) {
+      if (!this.isLower(height, adj[i].x, adj[i].y, data)) {
+        return false
+      }
     }
+    return true
+  }
 
-    // Check left
-    if (y === 0) {
-      lowerThenLeft = true
-    } else {
-      lowerThenLeft = data[x][y] < data[x][y - 1]
+  findAdj (x, y) {
+    return [
+      { x: x - 1, y: y },
+      { x: x + 1, y: y },
+      { x: x, y: y - 1 },
+      { x: x, y: y + 1 }
+    ]
+  }
+
+  isLower (height, x, y, data) {
+    if (data[x] === undefined || data[x][y] === undefined) {
+      return true
     }
-
-    // Check down
-    if (y === data[x].length - 1) {
-      lowerThenRight = true
-    } else {
-      lowerThenRight = data[x][y] < data[x][y + 1]
-    }
-
-    return lowerThenUp && lowerThenDown && lowerThenLeft && lowerThenRight
+    return height < data[x][y]
   }
 }
 
