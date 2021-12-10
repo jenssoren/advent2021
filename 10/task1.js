@@ -8,7 +8,7 @@ class Task extends Base {
   handle (data) {
     const corruptedChars = []
     for (let i = 0; i < data.length; i++) {
-      const corruptedChar = this.findCorruptChar(data[i], i)
+      const corruptedChar = this.findCorruptChar(data[i], true)
       if (corruptedChar) {
         corruptedChars.push(corruptedChar)
       }
@@ -37,9 +37,10 @@ class Task extends Base {
     console.log('Error score', answer)
   }
 
-  findCorruptChar (line) {
+  findCorruptChar (line, debug) {
     const starters = ['(', '[', '{', '<']
     const openers = []
+    let expected = null
     let found = null
     for (let i = 0; i < line.length; i++) {
       if (found) {
@@ -52,12 +53,13 @@ class Task extends Base {
         const open = openers.pop()
         if (this.expect(line[i]) !== open) {
           found = line[i]
+          expected = open
         }
       }
     }
 
-    if (found) {
-      console.log('Found', found)
+    if (found && debug) {
+      console.log('Expected', this.closer(expected), 'but found', found, 'instead')
     }
 
     return found
@@ -78,6 +80,21 @@ class Task extends Base {
     }
 
     return ''
+  }
+
+  closer (start) {
+    switch (start) {
+      case '(':
+        return ')'
+      case '[':
+        return ']'
+      case '{':
+        return '}'
+      case '<':
+        return '>'
+      default:
+        console.log('Start is', start)
+    }
   }
 }
 
