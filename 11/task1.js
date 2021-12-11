@@ -29,8 +29,7 @@ class Task extends Base {
     }
 
     if (flashedCount > 0) {
-      stepCount += flashedCount
-      return this.checkFlashes(data, flashed, stepCount)
+      return this.checkFlashes(data, flashed, stepCount + flashedCount)
     } else {
       return stepCount
     }
