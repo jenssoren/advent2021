@@ -41,9 +41,7 @@ class Task extends Base {
 
     if (hasFlashed[x] === undefined) {
       hasFlashed[x] = {}
-    }
-
-    if (hasFlashed[x][y]) {
+    } else if (hasFlashed[x][y]) {
       return false
     }
 
