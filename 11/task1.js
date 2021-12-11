@@ -7,48 +7,47 @@ class Task extends Base {
 
   handle (data) {
     const steps = 100
-    let totalFlashedCount = 0
+    let flashes = 0
     for (let i = 0; i < steps; i++) {
       data = data.map(row => row.map(line => line + 1))
-      const flashes = []
-      totalFlashedCount += this.checkFlashes(data, flashes, 0)
+      flashes += this.checkFlashes(data, [], 0)
       data = this.reset(data)
     }
 
-    console.log('Total flashes: ', totalFlashedCount)
+    console.log('Total flashes: ', flashes)
   }
 
-  checkFlashes (data, flashed, stepCount) {
-    let flashedCount = 0
+  checkFlashes (data, hasFlashed, stepFlashes) {
+    let flashes = 0
     for (let x = 0; x < data.length; x++) {
       for (let y = 0; y < data[x].length; y++) {
-        if (this.flash(x, y, data, flashed) === true) {
-          flashedCount++
+        if (this.flash(x, y, data, hasFlashed) === true) {
+          flashes++
         }
       }
     }
 
-    if (flashedCount > 0) {
-      return this.checkFlashes(data, flashed, stepCount + flashedCount)
+    if (flashes > 0) {
+      return this.checkFlashes(data, hasFlashed, stepFlashes + flashes)
     } else {
-      return stepCount
+      return stepFlashes
     }
   }
 
-  flash (x, y, data, flashed) {
+  flash (x, y, data, hasFlashed) {
     if (data[x][y] <= 9) {
       return false
     }
 
-    if (flashed[x] === undefined) {
-      flashed[x] = {}
+    if (hasFlashed[x] === undefined) {
+      hasFlashed[x] = {}
     }
 
-    if (flashed[x][y]) {
+    if (hasFlashed[x][y]) {
       return false
     }
 
-    flashed[x][y] = true
+    hasFlashed[x][y] = true
 
     const adj = this.findAdj(x, y)
     for (let i = 0; i < adj.length; i++) {
