@@ -11,19 +11,14 @@ class Task extends Base {
     for (let i = 0; i < steps; i++) {
       data = data.map(row => row.map(line => line + 1))
       const flashes = []
-      let flashedCount = 0
-      do {
-        flashedCount = this.checkFlashes(data, flashes)
-        totalFlashedCount += flashedCount
-      } while (flashedCount > 0)
-
+      totalFlashedCount += this.checkFlashes(data, flashes, 0)
       data = this.reset(data)
     }
 
     console.log('Total flashes: ', totalFlashedCount)
   }
 
-  checkFlashes (data, flashed) {
+  checkFlashes (data, flashed, stepCount) {
     let flashedCount = 0
     for (let x = 0; x < data.length; x++) {
       for (let y = 0; y < data[x].length; y++) {
@@ -33,7 +28,12 @@ class Task extends Base {
       }
     }
 
-    return flashedCount
+    if (flashedCount > 0) {
+      stepCount += flashedCount
+      return this.checkFlashes(data, flashed, stepCount)
+    } else {
+      return stepCount
+    }
   }
 
   flash (x, y, data, flashed) {
