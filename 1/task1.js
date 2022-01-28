@@ -12,6 +12,7 @@ class Task extends Base {
         increments++
       }
     }
+
     console.log('Increments: ' + increments)
   }
 }
